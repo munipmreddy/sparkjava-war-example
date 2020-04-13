@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Example') {
+        stage('build') {
          	agent { docker 'maven:3-alpine' } 
             	steps {
                		sh 'mvn clean package'
