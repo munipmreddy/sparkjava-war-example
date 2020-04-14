@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('deployment') {
             steps {
+                agent {label ‘master’}
             sh'''
             cd /opt/tomcat/webapps
             ls -lrt
