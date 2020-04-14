@@ -1,9 +1,9 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('deployment') {
+                            agent {label ‘slave1’}
             steps {
-                agent {label ‘slave1’}
             sh'''
             id
             pwd
