@@ -2,7 +2,6 @@ pipeline {
     agent any
     stages {
         stage('deployment') {
-            agent any
             steps {
             sh'''
             ls -lrt
