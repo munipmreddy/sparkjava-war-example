@@ -1,8 +1,7 @@
 pipeline {
-    agent any
+    node('master') {
     stages {
         stage('deployment') {
-            node('master') {
             steps {
             sh'''
             ls -lrt
