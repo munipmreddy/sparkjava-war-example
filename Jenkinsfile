@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('deployment') {
             steps {
-                node('master'){
+                agent {label ‘slave1’}
             sh'''
             id
             pwd
