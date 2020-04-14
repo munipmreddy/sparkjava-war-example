@@ -1,8 +1,7 @@
 pipeline {
-    agent any
+                                agent {label ‘slave1’}
     stages {
         stage('deployment') {
-                            agent {label ‘slave1’}
             steps {
             sh'''
             id
