@@ -7,14 +7,13 @@ pipeline {
                		sh 'mvn clean package'
             }
         }
-        stage('sonarqube') {
-            agent { docker 'maven:3-alpine' }
+        stage('deployment') {
+            agent any
             steps {
             sh'''
-            mvn sonar:sonar \
-  -Dsonar.projectKey=myproject \
-  -Dsonar.host.url=http://13.58.55.112:9000 \
-  -Dsonar.login=d7cfbaf53687870f6fefb137ab38dfe72b05ec61
+            cd /opt/tomcat/webapps
+            ls -lrt
+            curl -u admin:Password@321 -O "http://13.58.55.112:8081/artifactory/project/sparkjava-hello-world-1.0.war"
   '''
             }
         }
