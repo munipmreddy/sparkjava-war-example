@@ -1,22 +1,18 @@
 pipeline {
-    agent any
+                                agent {label 'slave1'}
     stages {
-        stage('build') {
-         	agent { docker 'maven:3-alpine' } 
-            	steps {
-               		sh 'mvn clean package'
-            }
-        }
-        stage('sonarqube') {
-            agent { docker 'maven:3-alpine' }
+        stage('deployment') {
             steps {
             sh'''
-mvn sonar:sonar \
-  -Dsonar.projectKey=myproject1 \
-  -Dsonar.host.url=http://3.133.91.41:9000 \
-  -Dsonar.login=49ac157fb5930d5de72df1c5dcb59ce8de471974
-  '''
+            id
+            pwd
+            cd /home/ubuntu/
+            ls -lrt
+            curl -uadmin:APASfQaa9ckVm7xtrFxAepxV1QE -O "http://3.133.91.41:8081/artifactory/project/sparkjava-hello-world-1.0.war"
+            cp sparkjava-hello-world-1.0.war /opt/tomcat/webapps/
+        
+            '''
+                }
             }
+                }
         }
-    }
-}
