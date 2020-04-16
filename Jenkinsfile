@@ -1,28 +1,21 @@
 pipeline {
     agent any
     stages {
-        stage('build and pubish') {
+        stage('build') {
          	agent { docker 'maven:3-alpine' } 
             	steps {
                		sh 'mvn clean package'
-                    rtUpload (
-    serverId: 'artifactory',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "**/sparkjava-hello-world-1.0.war",
-              "target": "project/"
             }
-         ]
-    }''',
- 
-    // Optional - Associate the uploaded files with the following custom build name and build number,
-    // as build artifacts.
-    // If not set, the files will be associated with the default build name and build number (i.e the
-    // the Jenkins job name and number).
-    buildName: 'project',
-    buildNumber: '1'
-)
+        }
+        stage('sonarqube') {
+            agent { docker 'maven:3-alpine' }
+            steps {
+            sh'''
+mvn sonar:sonar \
+  -Dsonar.projectKey=myproject1 \
+  -Dsonar.host.url=http://3.133.91.41:9000 \
+  -Dsonar.login=49ac157fb5930d5de72df1c5dcb59ce8de471974
+  '''
             }
         }
     }
