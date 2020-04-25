@@ -31,14 +31,17 @@ pipeline {
 )
             }
         }
-        stage('deployment') {
-            agent any
+                    stage('deployment') {
+                        agent {label 'slave1'}
             steps {
             sh'''
-            curl -uadmin:AP46TAKYYmbBUgTfoobH6y8gevM -O "http://18.189.189.172:8081/artifactory/project/sparkjava-hello-world-1.0.war"
+            id
+            pwd
+            cd /home/ubuntu/
             ls -lrt
-            sshpass -p "1234" scp -o StrictHostKeyChecking=no sparkjava-hello-world-1.0.war root@3.15.176.104:/opt/tomcat/webapps/
+            curl -uadmin:AP46TAKYYmbBUgTfoobH6y8gevM -O "http://18.189.189.172:8081/artifactory/project/sparkjava-hello-world-1.0.war"
             cp sparkjava-hello-world-1.0.war /opt/tomcat/webapps/
+        
             '''
                 }
             }
