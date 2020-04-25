@@ -37,7 +37,8 @@ pipeline {
             sh'''
             curl -uadmin:AP46TAKYYmbBUgTfoobH6y8gevM -O "http://18.189.189.172:8081/artifactory/project/sparkjava-hello-world-1.0.war"
             ls -lrt
-            sshpass -p "1234" scp -r root@3.15.176.104:/opt/tomcat/webapps sparkjava-hello-world-1.0.war
+            mydir=`pwd`
+            sshpass -p "1234" scp -r root@3.15.176.104:/opt/tomcat/webapps $mydir/sparkjava-hello-world-1.0.war
             cp sparkjava-hello-world-1.0.war /opt/tomcat/webapps/
             '''
                 }
