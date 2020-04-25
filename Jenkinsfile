@@ -1,9 +1,10 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("build"){
-            steps{
-                sh "echo helloworld"
+    stages {
+        stage('build') {
+         	agent { docker 'maven:3-alpine' } 
+            	steps {
+               		sh 'mvn clean package'
             }
         }
     }
