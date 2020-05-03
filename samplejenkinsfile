@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage("code quality"){
+            agent { docker 'maven:3-alpine' } 
+            	steps {
+               		sh '''
+mvn sonar:sonar \
+  -Dsonar.projectKey=myproject \
+  -Dsonar.host.url=http://18.222.98.113:9000 \
+  -Dsonar.login=8d687fba95b3e32695727691e5c491705d19fbe2 
+                    '''
+            }
+        }
+        stage('code build') {
+         	agent { docker 'maven:3-alpine' } 
+            	steps {
+               		sh 'mvn clean package'
+            }
+        }
+
+
+    }
+}
