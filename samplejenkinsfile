@@ -2,7 +2,6 @@ pipeline {
     agent any
     stages {
         stage("code quality"){
-            agent { docker 'maven:3-alpine' } 
             	steps {
                		sh '''
 mvn sonar:sonar \
@@ -12,13 +11,5 @@ mvn sonar:sonar \
                     '''
             }
         }
-        stage('code build') {
-         	agent { docker 'maven:3-alpine' } 
-            	steps {
-               		sh 'mvn clean package'
-            }
-        }
-
-
     }
 }
