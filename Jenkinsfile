@@ -7,7 +7,7 @@ pipeline{
         mvn sonar:sonar \
   -Dsonar.projectKey=mytoken \
   -Dsonar.host.url=http://52.15.36.58:9000 \
-  -Dsonar.login=6748e7da670032ed8185502dfaddbb6ecaf22802
+  -Dsonar.login=mytoken
         '''
       }
     }
