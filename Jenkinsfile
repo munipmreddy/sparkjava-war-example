@@ -4,7 +4,8 @@ pipeline{
     stage("code quality"){
       agent{docker'maven:3-alpine}
         steps{
-          sh '''        
+          sh 
+             '''        
           mvn sonar:sonar \
       -Dsonar.projectKey=mytoken \
       -Dsonar.host.url=http://52.15.36.58:9000 \
