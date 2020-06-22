@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage("code quality"){
       steps{
-        sh ***
+        sh  ***
         mvn sonar:sonar \
   -Dsonar.projectKey=mytoken \
   -Dsonar.host.url=http://52.15.36.58:9000 \
