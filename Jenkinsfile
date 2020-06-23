@@ -1,7 +1,7 @@
 pipeline{
   agent any
   stages{
-    stage("code build"){
+    stage("code quality"){
       agent {docker'maven:3-alpine'}
       steps{
         sh '''
