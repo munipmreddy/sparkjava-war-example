@@ -18,6 +18,7 @@ pipeline{
     buildName: 'project',
     buildNumber: '1'
 )
+                }
         }
     }
 }
