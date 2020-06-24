@@ -15,7 +15,7 @@ pipeline{
          	agent { docker 'maven:3-alpine' } 
             	steps {
                		sh 'mvn clean package'
-                                           rtUpload (
+                    rtUpload (
     serverId: 'artifactory',
     spec: '''{
           "files": [
@@ -23,6 +23,7 @@ pipeline{
               "pattern": "**/sparkjava-hello-world-1.0.war",
               "target": "project/"
             }
+               }
          ]
     }''',
         }
