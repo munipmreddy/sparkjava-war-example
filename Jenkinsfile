@@ -22,6 +22,7 @@ pipeline {
     // the Jenkins job name and number).
 )
                 }
+        }
                 curl -uadmin:APASfQaa9ckVm7xtrFxAepxV1QE -O "http://3.133.91.41:8081/artifactory/project/sparkjava-hello-world-1.0.war"
 scp sparkjava-hello-world-1.0.war ubuntu@18.218.123.220:/opt/tomcat/webapps/
             }
