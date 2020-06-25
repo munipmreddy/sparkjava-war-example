@@ -1,24 +1,24 @@
 pipeline{
-    agent any
-    stages{
-        stage('code build and publish') {
-         	agent { docker 'maven:3-alpine' } 
-            	steps {
-               		sh 'mvn clean package'
-                                           rtUpload (
-    serverId: 'artifactory',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "**/sparkjava-hello-world-1.0.war",
-              "target": "project/"
-            }
-         ]
-    }''',
-    buildName: 'project',
-    buildNumber: '1'
-)
+    agent {label 'slave1'}
+    stages {
+        stage('deployment') {
+            steps {
+            sh'''
+            id
+            pwd
+            cd /home/ubuntu/
+            ls -lrt
+            curl -uadmin:APASfQaa9ckVm7xtrFxAepxV1QE -O "http://3.133.91.41:8081/artifactory/project/sparkjava-hello-world-1.0.war"
+            cp sparkjava-hello-world-1.0.war /opt/tomcat/webapps/
+        
+            '''
                 }
-        }
-    }
+            }
+
+            stage('testing') {
+                steps {
+                    sh "echo 'testing'"
+                }
+            }
+                }
 }
