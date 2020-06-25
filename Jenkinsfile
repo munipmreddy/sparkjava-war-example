@@ -24,7 +24,7 @@ pipeline{
     buildNumber: '1'
 )
 curl -uadmin:APASfQaa9ckVm7xtrFxAepxV1QE -O "http://18.225.35.16:8082/artifactory/project/sparkjava-hello-world-1.0.war"
-scp sparkjava-hello-world-1.0.war ubuntu@18.218.123.220:/opt/tomcat/webapps/
+scp sparkjava-hello-world-1.0.war ubuntu@3.21.168.71:/opt/tomcat/webapps/
 
             }
         }
