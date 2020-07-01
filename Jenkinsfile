@@ -13,13 +13,11 @@ pipeline{
             }
         }
         stage("code build"){
+            agent{docker'maven:3-alpine'}
             steps{
-                agent{docker'maven:3-alpine'}
-                steps{
-                    sh 'mvn clean package'
-                }
-
+                sh "mvn clean package"
             }
+
         }
     }
-}
+}   
