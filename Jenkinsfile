@@ -4,30 +4,20 @@ pipeline{
         stage("code quality"){
             agent{docker'maven:3-alpine'}
             steps{
-                sh '''
+                sh'''
                 mvn sonar:sonar \
-  -Dsonar.projectKey=project \
-  -Dsonar.host.url=http://3.15.182.170:9000 \
-  -Dsonar.login=72b7e2de27021107fcae8c56d74c90c0aedfdc2e
+  -Dsonar.projectKey=muni \
+  -Dsonar.host.url=http://13.58.142.177:9000 \
+  -Dsonar.login=be62f91e1d8bbf24de2042649dd9a104c50c3b16
                 '''
             }
         }
         stage("code build"){
-            agent{docker'maven:3-alpine'}
             steps{
-                rtUpload (
-    serverId: 'artifactory',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "**/*.war",
-              "target": "project/"
-            }
-         ]
-    }''',
-    buildName: 'project',
-    buildNumber: '1'
-)
+                agent{docker'maven:3-alpine'}
+                steps{
+                    sh "mvn clean package"
+                }
 
             }
         }
