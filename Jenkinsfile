@@ -4,11 +4,11 @@ pipeline{
         stage("code quality"){
             agent{docker'maven:3-alpine'}
             steps{
-                sh '''
+                sh'''
                 mvn sonar:sonar \
-  -Dsonar.projectKey=yellow \
-  -Dsonar.host.url=http://18.191.174.227:9000 \
-  -Dsonar.login=40a100e32ba1c80445b8b725a75332245dc11e63
+  -Dsonar.projectKey=demoproject \
+  -Dsonar.host.url=http://18.218.188.210:9000 \
+  -Dsonar.login=5937685ceb24117827bc6039b58b4a1c7ec6fe4c
                 '''
             }
         }
@@ -16,19 +16,6 @@ pipeline{
             agent{docker'maven:3-alpine'}
             steps{
                 sh "mvn clean package"
-                rtUpload (
-    serverId: 'artifactory',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "**/sparkjava-hello-world-1.0.war",
-              "target": "project/"
-            }
-         ]
-    }''',
-    buildName: 'project',
-    buildNumber: '1'
-)
             }
         }
     }
